@@ -61,6 +61,8 @@ For detailed theoretical background and explanations of camera calibration conce
 
 6. **Output**  
    The script prints the calibration results to the console.
+<img width="500" height="390" alt="image" src="https://github.com/user-attachments/assets/6b287566-fb58-4f79-aee0-bfc54c1913f4" />
+
 
 ***
 
