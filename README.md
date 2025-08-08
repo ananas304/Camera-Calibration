@@ -10,6 +10,10 @@ The code calibrates a camera by detecting corners on checkerboard calibration im
 
 Camera calibration is essential in computer vision and robotics applications like 3D reconstruction, object measurement, and navigation. This process finds the camera's internal characteristics (intrinsic parameters like focal length and optical center) and its position relative to the scene (extrinsic parameters).
 
+
+<img width="500" height="450" alt="image" src="https://github.com/user-attachments/assets/d4ba6f4b-aa87-45a6-8f38-1c605185ab92" />
+
+
 This project uses a set of checkerboard images and OpenCV functions to automatically detect checkerboard corners and calculate the camera calibration matrices.
 
 For detailed theoretical background and explanations of camera calibration concepts, refer:  
