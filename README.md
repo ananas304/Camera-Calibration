@@ -101,3 +101,11 @@ Tangential distortion occurs when the lens and the image plane are not parallel.
 </p>
 
 ***
+## References
+
+1. MathWorks, *What Is Camera Calibration?* MATLAB & Simulink Documentation. [https://in.mathworks.com/help/vision/ug/camera-calibration.html](https://in.mathworks.com/help/vision/ug/camera-calibration.html)  
+2. OpenCV, *Camera Calibration and 3D Reconstruction Tutorial (Python)*. [https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)  
+3. MathWorks, *Camera Calibration* Documentation. [https://in.mathworks.com/help/vision/camera-calibration.html](https://in.mathworks.com/help/vision/camera-calibration.html)  
+4. Zhang, Z., *A Flexible New Technique for Camera Calibration*, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000.  
+5. Hartley, R., & Zisserman, A., *Multiple View Geometry in Computer Vision*, Cambridge University Press, 2004.  
+6. Shree K. Nayar, *Camera Calibration*, Columbia University. [YouTube](https://youtube.com/playlist?list=PL2zRqk16wsdoCCLpou-dGo7QQNks1Ppzo&si=oaDtYB6_8ZIb8CVd)
