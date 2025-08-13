@@ -1,97 +1,78 @@
-# Camera Calibration using OpenCV
+# Camera Calibration
+Geometric camera calibration, also referred to as camera resectioning, estimates the parameters of a lens and image sensor of an image or video camera.
+Camera calibration is the process of figuring out the exact settings and characteristics of a camera so it can accurately represent the 3D world in a 2D image. It involves calculating important camera parameters like:
 
-This repository contains code for performing camera calibration using images of a checkerboard pattern. Camera calibration is the process of estimating the intrinsic and extrinsic parameters of the camera to correct lens distortions and relate 3D object points to their 2D image projections.
-
-The code calibrates a camera by detecting corners on checkerboard calibration images and computing camera parameters using those detected points.
+- **Intrinsic parameters**: These describe the camera’s internal features, such as focal length (how zoomed in the camera is), the principal point (image center), and lens distortion (corrections for fisheye or bent images).
+- **Extrinsic parameters**: These describe the camera's position and orientation relative to the world (where the camera is located and which way it’s pointing).
 
 ***
 
-## Overview
+#### Why Do You Need Camera Calibration?
 
-Camera calibration is essential in computer vision and robotics applications like 3D reconstruction, object measurement, and navigation. This process finds the camera's internal characteristics (intrinsic parameters like focal length and optical center) and its position relative to the scene (extrinsic parameters).
+- **To correct distortions** caused by the camera lens so that straight lines in the real world appear straight in images.
+- **To accurately measure sizes and distances** of objects seen by the camera.
+- **To relate real-world 3D coordinates to 2D image points**, which is critical for applications like 3D reconstruction, navigation, robotics, and your Optical Landing System project.
+- **To determine the camera's location and angle** in a scene, enabling precise interpretation of what the camera “sees.”
+- Without calibration, images can be distorted and measurements wrong, which will hurt any computer vision tasks relying on the camera.
 
+***
+## Camera Calibration Parameters
+Camera calibration parameters are the values that define how a camera captures a 3D scene and projects it onto a 2D image. These parameters can be split into two main types: intrinsic and extrinsic.
+<img width="657" height="154" alt="image" src="https://github.com/user-attachments/assets/d1318c5f-bfdc-4e9e-bbdc-f1922aa6d029" />
 
-<img width="500" height="450" alt="image" src="https://github.com/user-attachments/assets/d4ba6f4b-aa87-45a6-8f38-1c605185ab92" />
-
-
-This project uses a set of checkerboard images and OpenCV functions to automatically detect checkerboard corners and calculate the camera calibration matrices.
-
-For detailed theoretical background and explanations of camera calibration concepts, refer:  
-[Camera Calibration - MATLAB Documentation](https://in.mathworks.com/help/vision/ug/camera-calibration.html)
-[Camera Calibration - OpenCV Documentation](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)
 ***
 
-## How the Code Works (main.py)
+### 1. Intrinsic Parameters
 
-1. **Checkerboard Setup**  
-   The checkerboard pattern size is defined as 6 rows and 9 columns of internal corners:
-   ```python
-   CHECKERBOARD = (6, 9)
-   ```
-   This tells the program how many inner corners to expect per calibration image.
+These describe the internal characteristics of the camera itself, essentially how the camera forms an image of the 3D world onto the 2D sensor.
 
-2. **3D Object Points Initialization**  
-   World coordinates for the checkerboard corners are generated assuming the board lies flat on the XY plane with Z=0:
-   ```python
-   objp = np.zeros((1, CHECKERBOARD[0] * CHECKERBOARD[1], 3), np.float32)
-   objp[0,:,:2] = np.mgrid[0:CHECKERBOARD[0], 0:CHECKERBOARD[1]].T.reshape(-1, 2)
-   ```
-   These 3D points are fixed for all images because the physical checkerboard size doesn’t change.
+- **Focal length (fx, fy):** Specifies how strongly the camera focuses light, affecting the zoom level. It's usually expressed in pixels.
+- **Principal point (cx, cy):** The point in the image that corresponds to the optical center where the camera's axis intersects the image plane (usually near the image center).
+- **Skew coefficient (γ):** Accounts for the skewness between the x and y pixel axes (ideally zero if axes are perpendicular).
+- **Distortion coefficients:** Correct lens distortions like radial (barrel or pincushion) and tangential distortions caused by the camera lens imperfections.
 
-3. **Image Loading and Corner Detection**  
-   The script reads all `.jpg` images from the `./images` folder and converts each to grayscale. For each image, it tries to find checkerboard corners using:
-   ```python
-   cv2.findChessboardCorners()
-   ```
-   If corners are found, their locations are refined to subpixel accuracy with:
-   ```python
-   cv2.cornerSubPix()
-   ```
-   Detected corners are drawn on the image for visual confirmation.
+**intrinsic matrix (K)**:
 
-4. **Storing Correspondences**  
-   For each successful image, the known 3D points (`objpoints`) and detected 2D image corner points (`imgpoints`) are appended to their respective lists.
+$$
+K =
+\begin{bmatrix}
+f_x & \gamma & c_x \\
+0 & f_y & c_y \\
+0 & 0 & 1
+\end{bmatrix}
+$$
 
-5. **Camera Calibration**  
-   After processing all images, the intrinsic and extrinsic camera parameters are calculated using:
-   ```python
-   cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
-   ```
-   This returns:
-   - **Camera Matrix (mtx):** Intrinsic parameters describing focal length, skew, and principal point.
-   - **Distortion Coefficients (dist):** Parameters modeling lens distortion.
-   - **Rotation Vectors (rvecs):** Rotation of the checkerboard pattern relative to the camera.
-   - **Translation Vectors (tvecs):** Position of the checkerboard relative to the camera.
+This matrix maps 3D camera coordinates onto 2D image pixel coordinates.
 
-6. **Output**  
-   The script prints the calibration results to the console.
-<img width="500" height="390" alt="image" src="https://github.com/user-attachments/assets/6b287566-fb58-4f79-aee0-bfc54c1913f4" />
+<img width="579" height="416" alt="image" src="https://github.com/user-attachments/assets/e37ede5a-c36b-4a6d-bfa1-08a08cd4ee8a" />
 
 
 ***
 
-## Usage
+### 2. Extrinsic Parameters
 
-1. Place your checkerboard images in the `./images` directory.
-2. Run the script:
-   ```bash
-   python main.py
-   ```
-3. The script will show each checkerboard image with detected corners. Press any key to move to the next image.
-4. After processing all images, camera calibration matrices and distortion coefficients are printed.
+These describe the camera's position and orientation in the world, relating the world coordinate system to the camera coordinate system.
+
+- **Rotation matrix (R):** A 3×3 matrix that describes how the world is rotated to align with the camera.
+- **Translation vector (t):** A 3×1 vector that describes the camera's position shift in the world coordinate system.
+
+Together, these form the **extrinsic matrix [R | t]**, a 3×4 matrix used to convert 3D points from world coordinates into the camera coordinate system.
 
 ***
 
-## Requirements
+## The Full Camera Projection
 
-- Python 3.x
-- OpenCV (`opencv-python`)
-- NumPy
-- glob (standard Python library)
+The overall camera projection matrix combines intrinsic and extrinsic parameters:
 
-Install dependencies with:
-```bash
-pip install opencv-python numpy
-```
+$$
+P = K [R | t]
+$$
+
+<img width="680" height="120" alt="image" src="https://github.com/user-attachments/assets/a5d5b021-48a4-4328-be66-400605e3d25a" />
+
+The world points are transformed to camera coordinates using the extrinsic parameters. The camera coordinates are mapped into the image plane using the intrinsics parameters.
+
+
+***
 
 
