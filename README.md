@@ -80,5 +80,19 @@ The world points are transformed to camera coordinates using the extrinsic param
 
 
 ***
+## Distortion in Camera Calibration
+The camera matrix does not account for lens distortion because an ideal pinhole camera does not have a lens. To accurately represent a real camera, the camera model includes the radial and tangential lens distortion.
 
+### Radial Distortion
+Radial distortion occurs when light rays bend more near the edges of a lens than they do at its optical center. The smaller the lens, the greater the distortion.
+<p align="center">
+<img width="648" height="125" alt="image" src="https://github.com/user-attachments/assets/6238b406-ce3f-4e34-98b5-4b9f56e74afd" />
+</p>
 
+### Tangential Distortion
+Tangential distortion occurs when the lens and the image plane are not parallel. The tangential distortion coefficients model this type of distortion.
+<p align="center">
+<img width="536" height="269" alt="image" src="https://github.com/user-attachments/assets/127a4449-f8bd-4fa8-8034-68bbcabf70b6" />
+</p>
+
+***
