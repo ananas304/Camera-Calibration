@@ -20,7 +20,12 @@ Camera calibration is the process of figuring out the exact settings and charact
 Camera calibration parameters are the values that define how a camera captures a 3D scene and projects it onto a 2D image. These parameters can be split into two main types: intrinsic and extrinsic.
 <p align="center">
 <img width="657" height="154" alt="image" src="https://github.com/user-attachments/assets/d1318c5f-bfdc-4e9e-bbdc-f1922aa6d029" />
+  
 </p>
+<p align="center">
+<img width="584" height="321" alt="image" src="https://github.com/user-attachments/assets/198d5c91-63c1-4ba0-af85-571a3386ba73" />
+</p>
+
 ***
 
 ### 1. Intrinsic Parameters
