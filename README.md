@@ -18,8 +18,9 @@ Camera calibration is the process of figuring out the exact settings and charact
 ***
 ## Camera Calibration Parameters
 Camera calibration parameters are the values that define how a camera captures a 3D scene and projects it onto a 2D image. These parameters can be split into two main types: intrinsic and extrinsic.
+<p align="center">
 <img width="657" height="154" alt="image" src="https://github.com/user-attachments/assets/d1318c5f-bfdc-4e9e-bbdc-f1922aa6d029" />
-
+</p>
 ***
 
 ### 1. Intrinsic Parameters
@@ -46,7 +47,6 @@ This matrix maps 3D camera coordinates onto 2D image pixel coordinates.
 
 <img width="579" height="416" alt="image" src="https://github.com/user-attachments/assets/e37ede5a-c36b-4a6d-bfa1-08a08cd4ee8a" />
 
-
 ***
 
 ### 2. Extrinsic Parameters
@@ -55,6 +55,10 @@ These describe the camera's position and orientation in the world, relating the 
 
 - **Rotation matrix (R):** A 3×3 matrix that describes how the world is rotated to align with the camera.
 - **Translation vector (t):** A 3×1 vector that describes the camera's position shift in the world coordinate system.
+
+<p align="center">
+<img width="326" height="121" alt="image" src="https://github.com/user-attachments/assets/c2f1980e-b346-4a42-82b2-eb7e9cd84ca7" />
+</p>
 
 Together, these form the **extrinsic matrix [R | t]**, a 3×4 matrix used to convert 3D points from world coordinates into the camera coordinate system.
 
@@ -68,7 +72,9 @@ $$
 P = K [R | t]
 $$
 
+<p align="center">
 <img width="680" height="120" alt="image" src="https://github.com/user-attachments/assets/a5d5b021-48a4-4328-be66-400605e3d25a" />
+</p>
 
 The world points are transformed to camera coordinates using the extrinsic parameters. The camera coordinates are mapped into the image plane using the intrinsics parameters.
 
