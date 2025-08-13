@@ -7,7 +7,7 @@ Camera calibration is the process of figuring out the exact settings and charact
 
 ***
 
-#### Why Do You Need Camera Calibration?
+#### Need for Camera Calibration?
 
 - **To correct distortions** caused by the camera lens so that straight lines in the real world appear straight in images.
 - **To accurately measure sizes and distances** of objects seen by the camera.
