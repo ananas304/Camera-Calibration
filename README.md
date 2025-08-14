@@ -103,6 +103,51 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
       </p>
 
 ***
+## Stereo Camera Calibration
+A stereo camera is a camera system that uses two or more camera lenses (and image sensors) placed a fixed distance apart to capture images of the same scene from slightly different viewpoints—mimicking human binocular vision. Stereo camera calibration is the process of determining both the individual (intrinsic) parameters for each camera in a stereo setup and the precise position and orientation (extrinsic parameters) of the cameras relative to each other.
+
+The process typically follows these steps:
+
+1. **Individual Camera Calibration**  
+   Each camera in the stereo pair is calibrated independently to estimate its intrinsic parameters, including focal length, principal point, and lens distortion coefficients. This step ensures that each camera’s internal characteristics are well understood.
+   
+    Fig: Detection of chessboard corners with color-coded correspondences in left and right stereo calibration images.
+     <img width="950" height="359" alt="image" src="https://github.com/user-attachments/assets/b7b3ca61-895e-45ea-8ac3-05ae2daf1d15" />
+
+    Fig: intrinsic matrix consisting of focal lengths and principle points of left and right cameras.
+    <p align="center">
+      <img width="347" height="155" alt="image" src="https://github.com/user-attachments/assets/11be7451-ff22-4143-8c79-630574693a19" />
+    </p>
+
+
+2. **Stereo Pair Calibration (Extrinsic Parameters)**  
+   Once individual calibrations are done, the next step finds the rotation and translation (extrinsic parameters) that describe the relative position and orientation between the two cameras. This defines how the cameras are arranged spatially with respect to each other.
+   
+   fig: Rotation and Translation matrices between the cameras.
+   <p align="center">
+    <img width="406" height="161" alt="image" src="https://github.com/user-attachments/assets/219adb72-91b4-4eed-94ce-920c83140cb7" />
+  </p>
+
+
+3. **Image Capture of Calibration Pattern**  
+   Multiple synchronized images of a known calibration pattern (such as a checkerboard) are taken simultaneously by both cameras from different angles and positions. The known pattern points provide correspondences between the two cameras.
+
+4. **Feature Extraction and Matching**  
+   The calibration software detects feature points (like checkerboard corners) in both images and establishes correspondences between them.
+
+5. **Estimation of Stereo Parameters**  
+   Using the matched points and known calibration pattern geometry, the calibration algorithm estimates the stereo parameters that best align the cameras’ views. This includes refining intrinsics if necessary.
+
+6. **Rectification and Validation**  
+   The calibration results are used to rectify (align) the stereo images so that corresponding points lie on the same image rows, simplifying depth computation. The calibration quality is validated by measuring reprojection errors to ensure accuracy.
+
+   <img width="1182" height="438" alt="image" src="https://github.com/user-attachments/assets/132edbe0-54b4-4066-a8e4-100f313f6e33" />
+
+7. **Application of Calibration**  
+   The final calibrated stereo model enables accurate triangulation of points, allowing 3D reconstruction and depth estimation for downstream applications like robotic vision or optical landing systems.
+
+***
+
 ## References
 
 1. MathWorks, *What Is Camera Calibration?* MATLAB & Simulink Documentation. [https://in.mathworks.com/help/vision/ug/camera-calibration.html](https://in.mathworks.com/help/vision/ug/camera-calibration.html)  
@@ -111,3 +156,4 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 4. Zhang, Z., *A Flexible New Technique for Camera Calibration*, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000.  
 5. Hartley, R., & Zisserman, A., *Multiple View Geometry in Computer Vision*, Cambridge University Press, 2004.  
 6. Shree K. Nayar, *Camera Calibration*, Columbia University. [YouTube](https://youtube.com/playlist?list=PL2zRqk16wsdoCCLpou-dGo7QQNks1Ppzo&si=oaDtYB6_8ZIb8CVd)
+7. Stereo Calibrate two cameras GitHub repo [TemugeB / python_stereo_camera_calibrate](https://github.com/TemugeB/python_stereo_camera_calibrate?tab=readme-ov-file)
