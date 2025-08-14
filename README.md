@@ -146,6 +146,7 @@ The process typically follows these steps:
 7. **Application of Calibration**  
    The final calibrated stereo model enables accurate triangulation of points, allowing 3D reconstruction and depth estimation for downstream applications like robotic vision or optical landing systems.
 
+Check out [Camera-Calibration/stereo camera calibration](https://github.com/ananas304/Camera-Calibration/tree/main/stereo%20camera%20calibration)
 ***
 
 ## References
