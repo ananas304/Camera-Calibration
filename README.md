@@ -155,6 +155,5 @@ Check out [Camera-Calibration/stereo camera calibration](https://github.com/anan
 2. OpenCV, *Camera Calibration and 3D Reconstruction Tutorial (Python)*. [https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)  
 3. MathWorks, *Camera Calibration* Documentation. [https://in.mathworks.com/help/vision/camera-calibration.html](https://in.mathworks.com/help/vision/camera-calibration.html)  
 4. Zhang, Z., *A Flexible New Technique for Camera Calibration*, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000.  
-5. Hartley, R., & Zisserman, A., *Multiple View Geometry in Computer Vision*, Cambridge University Press, 2004.  
-6. Shree K. Nayar, *Camera Calibration*, Columbia University. [YouTube](https://youtube.com/playlist?list=PL2zRqk16wsdoCCLpou-dGo7QQNks1Ppzo&si=oaDtYB6_8ZIb8CVd)
-7. Stereo Calibrate two cameras GitHub repo [TemugeB / python_stereo_camera_calibrate](https://github.com/TemugeB/python_stereo_camera_calibrate?tab=readme-ov-file)
+5. Shree K. Nayar, *Camera Calibration*, Columbia University. [YouTube](https://youtube.com/playlist?list=PL2zRqk16wsdoCCLpou-dGo7QQNks1Ppzo&si=oaDtYB6_8ZIb8CVd)
+6. Stereo Calibrate two cameras GitHub repo [TemugeB / python_stereo_camera_calibrate](https://github.com/TemugeB/python_stereo_camera_calibrate?tab=readme-ov-file)
