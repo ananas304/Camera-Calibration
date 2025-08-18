@@ -114,23 +114,6 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 During calibration, the solver finds the values of k1, k2, k3, p1, p2 that best fit the observed distortion in sample images.
 
 ***
-
-### Importance in Camera Calibration
-
-- **Correction:**  
-  - Distortion coefficients enable correction (undistortion) of images so that straight lines in the real scene appear straight in the image, which is vital for accurate measurement, 3D reconstruction, and computer vision.
-- **Accurate Measurement:**  
-  - Without accounting for distortion, any size, angle, or position measurement from the image will be incorrect, especially toward the frame edges.
-- **Rectification:**  
-  - Proper stereo image rectification and depth perception depend on having high-fidelity, distortion-free images.
-
-***
-
-**In summary:**  
-**Distortion coefficients** are essential calibration results. They let you mathematically undo the bending effect of a real lens, giving your camera model the accuracy needed for precise computer vision tasks—including measurement, feature detection, 3D reconstruction, and robotics.
-
-
-***
 ## Stereo Camera Calibration
 A stereo camera is a camera system that uses two or more camera lenses (and image sensors) placed a fixed distance apart to capture images of the same scene from slightly different viewpoints—mimicking human binocular vision. Stereo camera calibration is the process of determining both the individual (intrinsic) parameters for each camera in a stereo setup and the precise position and orientation (extrinsic parameters) of the cameras relative to each other.
 
