@@ -104,6 +104,7 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 ### Distortion Coefficient
 
 **Distortion coefficients** are numerical parameters that model and quantify how a real camera lens deforms or “distorts” an image compared to the ideal pinhole camera model.
+Distortion coeeficient = (k1 k2 p1 p2 k3)
 
 <p align="center">
   <img width="707" height="307" alt="image" src="https://github.com/user-attachments/assets/20545213-5c80-485f-8eb9-ffc530c987de" />
