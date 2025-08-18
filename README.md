@@ -26,7 +26,6 @@ Camera calibration parameters are the values that define how a camera captures a
 <img width="584" height="321" alt="image" src="https://github.com/user-attachments/assets/198d5c91-63c1-4ba0-af85-571a3386ba73" />
 </p>
 
-***
 
 ### 1. Intrinsic Parameters
 
@@ -52,7 +51,6 @@ This matrix maps 3D camera coordinates onto 2D image pixel coordinates.
 
 <img width="579" height="416" alt="image" src="https://github.com/user-attachments/assets/e37ede5a-c36b-4a6d-bfa1-08a08cd4ee8a" />
 
-***
 
 ### 2. Extrinsic Parameters
 
