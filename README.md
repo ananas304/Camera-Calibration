@@ -107,11 +107,30 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 
 **Distortion coefficients** are numerical parameters that model and quantify how a real camera lens deforms or “distorts” an image compared to the ideal pinhole camera model.
 
- <p align="center">
-<img width="707" height="307" alt="image" src="https://github.com/user-attachments/assets/20545213-5c80-485f-8eb9-ffc530c987de" />
- </p>
+<p align="center">
+  <img width="707" height="307" alt="image" src="https://github.com/user-attachments/assets/20545213-5c80-485f-8eb9-ffc530c987de" />
+</p>
  
 ***
+
+## Uncalibrated Stereo
+We have two images of a scene, taken from two different devices from different views. We assume that we know the focal lengths and principal points of both camera. (either calibrate the camera or view metatag attached to the image which includes all the  information). We are interested in finding to calibarte the uncalibrated stereo system are extrensic or external parameters of the two camers. Which is position and orientation of the cameras, which are unkown.
+- Assume Camera matrix K is known for each camera.
+- Find few reliable Corresponding points(at least 8) in both camera images.
+- Find Relative Camera Position t and Orientation R.
+- Find Dense Correspondence
+- Compute Depth using triangualtion.
+
+ <p align="center">
+ <img width="668" height="277" alt="image" src="https://github.com/user-attachments/assets/c0d75a1e-d2b1-487e-a829-dd703806919f" />
+ </p>
+
+ ### Epipolar geometry
+- Epipole: Image point of origin?pinhole of one camera as viewed by the other camera. el and er in the above image and they are unique for a given stereo pair.
+- Epipolar plane: The plane formed by camera origins(ol and or), epipoles(el and er) and scene point P. every scene point lies on a unique epipolar plane.  
+
+***
+
 ## Stereo Camera Calibration
 A stereo camera is a camera system that uses two or more camera lenses (and image sensors) placed a fixed distance apart to capture images of the same scene from slightly different viewpoints—mimicking human binocular vision. Stereo camera calibration is the process of determining both the individual (intrinsic) parameters for each camera in a stereo setup and the precise position and orientation (extrinsic parameters) of the cameras relative to each other.
 
@@ -179,6 +198,14 @@ Suppose you know:
 If you use a **calibration object** (like a chessboard) with known square size (say, 20mm between corners), and you measure the distance between those corners in pixels in your image, you get a real-world conversion factor:
 <img width="400" height="70" alt="image" src="https://github.com/user-attachments/assets/b8d28d21-c74f-48d2-ba82-ea2b18e3b035" />
 
+***
+
+## Reprojection error
+The reprojection error measures the distance between the reprojection of a model estimation and its corresponding true projection. The reprojection error is a camera- and setup-independent error metric used to measure the performance of the calibration algorithm while ignoring external influences. 
+
+<p align="center">
+<img width="404" height="380" alt="image" src="https://github.com/user-attachments/assets/0ba20e91-3063-4085-bbf1-5b8ea31210fd" />
+</p>
 
 ***
 
