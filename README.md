@@ -111,8 +111,6 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 <img width="707" height="307" alt="image" src="https://github.com/user-attachments/assets/20545213-5c80-485f-8eb9-ffc530c987de" />
  </p>
  
-During calibration, the solver finds the values of k1, k2, k3, p1, p2 that best fit the observed distortion in sample images.
-
 ***
 ## Stereo Camera Calibration
 A stereo camera is a camera system that uses two or more camera lenses (and image sensors) placed a fixed distance apart to capture images of the same scene from slightly different viewpoints—mimicking human binocular vision. Stereo camera calibration is the process of determining both the individual (intrinsic) parameters for each camera in a stereo setup and the precise position and orientation (extrinsic parameters) of the cameras relative to each other.
