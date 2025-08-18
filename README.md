@@ -91,16 +91,44 @@ The camera matrix does not account for lens distortion because an ideal pinhole 
 - Non-linear distortion refers to image distortions that bend straight lines into curves in the image, usually as a result of lens imperfections.
   - The most common types are:
       ### Radial Distortion
-      Radial distortion occurs when light rays bend more near the edges of a lens than they do at its optical center. The smaller the lens, the greater the distortion.
+      Radial distortion occurs when light rays bend more near the edges of a lens than they do at its optical center. The smaller the lens, the greater the distortion.  Modeled with coefficients k1, k2, k3.
+
       <p align="center">
       <img width="648" height="125" alt="image" src="https://github.com/user-attachments/assets/6238b406-ce3f-4e34-98b5-4b9f56e74afd" />
       </p>
 
       ### Tangential Distortion
-      Tangential distortion occurs when the lens and the image plane are not parallel. The tangential distortion coefficients model this type of distortion.
+      Tangential distortion occurs when the lens and the image plane are not parallel. The tangential distortion coefficients model this type of distortion. Modeled with coefficients p1, p2.
       <p align="center">
       <img width="536" height="269" alt="image" src="https://github.com/user-attachments/assets/127a4449-f8bd-4fa8-8034-68bbcabf70b6" />
       </p>
+
+### Distortion Coefficient
+
+**Distortion coefficients** are numerical parameters that model and quantify how a real camera lens deforms or “distorts” an image compared to the ideal pinhole camera model.
+
+ <p align="center">
+<img width="707" height="307" alt="image" src="https://github.com/user-attachments/assets/20545213-5c80-485f-8eb9-ffc530c987de" />
+ </p>
+ 
+During calibration, the solver finds the values of k1, k2, k3, p1, p2 that best fit the observed distortion in sample images.
+
+***
+
+### Importance in Camera Calibration
+
+- **Correction:**  
+  - Distortion coefficients enable correction (undistortion) of images so that straight lines in the real scene appear straight in the image, which is vital for accurate measurement, 3D reconstruction, and computer vision.
+- **Accurate Measurement:**  
+  - Without accounting for distortion, any size, angle, or position measurement from the image will be incorrect, especially toward the frame edges.
+- **Rectification:**  
+  - Proper stereo image rectification and depth perception depend on having high-fidelity, distortion-free images.
+
+***
+
+**In summary:**  
+**Distortion coefficients** are essential calibration results. They let you mathematically undo the bending effect of a real lens, giving your camera model the accuracy needed for precise computer vision tasks—including measurement, feature detection, 3D reconstruction, and robotics.
+
 
 ***
 ## Stereo Camera Calibration
@@ -147,6 +175,30 @@ The process typically follows these steps:
    The final calibrated stereo model enables accurate triangulation of points, allowing 3D reconstruction and depth estimation for downstream applications like robotic vision or optical landing systems.
 
 Check out [Camera-Calibration/stereo camera calibration](https://github.com/ananas304/Camera-Calibration/tree/main/stereo%20camera%20calibration)
+
+***
+
+## Pixel to Millimeter conversion
+Converting pixels to millimeters (or vice versa) is a common task in camera calibration and measurement applications. The math behind it depends on knowing the **physical size of the image sensor** and the **resolution of the image**.
+
+### **1. Pixel Size Calculation**
+
+Suppose you know:
+- The **physical width or height of your camera's sensor** (e.g., 6.4mm wide).
+- The **image resolution** (e.g., 1920 pixels wide).
+
+<img width="500" height="200" alt="image" src="https://github.com/user-attachments/assets/258e1645-f257-4bc1-9f76-87122fb254de" />
+
+
+### **2. Direct Pixel-to-Millimeter Conversion**
+<img width="500" height="160" alt="image" src="https://github.com/user-attachments/assets/dc3e92b7-d865-4610-8d7a-f6ec25e68632" />
+
+### **3. Using Calibration Patterns (Practical Camera Calibration)**
+
+If you use a **calibration object** (like a chessboard) with known square size (say, 20mm between corners), and you measure the distance between those corners in pixels in your image, you get a real-world conversion factor:
+<img width="400" height="70" alt="image" src="https://github.com/user-attachments/assets/b8d28d21-c74f-48d2-ba82-ea2b18e3b035" />
+
+
 ***
 
 ## References
