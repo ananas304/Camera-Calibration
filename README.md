@@ -198,9 +198,18 @@ If you use a **calibration object** (like a chessboard) with known square size (
 <img width="400" height="70" alt="image" src="https://github.com/user-attachments/assets/b8d28d21-c74f-48d2-ba82-ea2b18e3b035" />
 
 ***
+## Disparity map
+A disparity map is an image that shows, for each pixel, the horizontal shift (disparity) between corresponding points in a pair of rectified stereo images (left and right views). The value of each pixel in the disparity map represents how much that point has moved between the two images, typically measured in pixels. It is used for Depth estimation and 3D scene understanding
+- The disparity map encodes depth cues: larger disparities indicate closer objects.
+- Bright or warm colors typically represent closer objects (larger disparity), while cooler/darker colors represent farther objects (smaller disparity).
+
+  <img width="533" height="312" alt="image" src="https://github.com/user-attachments/assets/7dac2020-5cea-4c0f-b978-7937b1a29361" />
+
+
+***
 
 ## Reprojection error
-The reprojection error measures the distance between the reprojection of a model estimation and its corresponding true projection. The reprojection error is a camera- and setup-independent error metric used to measure the performance of the calibration algorithm while ignoring external influences. 
+The reprojection error measures the distance between the reprojection of a model estimation and its corresponding true projection. The reprojection error is a camera and setup independent error metric used to measure the performance of the calibration algorithm while ignoring external influences. 
 
 <p align="center">
 <img width="404" height="380" alt="image" src="https://github.com/user-attachments/assets/0ba20e91-3063-4085-bbf1-5b8ea31210fd" />
