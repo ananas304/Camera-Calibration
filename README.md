@@ -215,6 +215,20 @@ The reprojection error measures the distance between the reprojection of a model
 <img width="404" height="380" alt="image" src="https://github.com/user-attachments/assets/0ba20e91-3063-4085-bbf1-5b8ea31210fd" />
 </p>
 
+The reprojection error measures the pixel distance between the observed 2D image points (e.g., detected chessboard corners) and the projected 2D points obtained by mapping the corresponding 3D world points through the estimated camera model. It quantifies how accurately the estimated camera parameters describe the true camera projection.
+
+Key points:
+
+- **Definition:** It is the Euclidean distance (in pixels) between the detected image point and the reprojected point predicted by applying the estimated calibration parameters.
+- **Calculation:** Computed for all calibration points across all images, then aggregated, often as a mean or root mean square (RMS) value.
+- **Interpretation:**  
+  - A lower reprojection error indicates a better fit of the calibration model to the data.  
+  - Values below 0.5 pixels are generally considered excellent, while larger values suggest calibration inaccuracies or bad data.
+- **Camera- and Setup-Independence:** Because the reprojection error is expressed in pixel units, it provides a consistent, intrinsic measure of calibration quality irrespective of camera models or scene setups.
+- **Validation:** It is the primary metric to validate and compare calibration results and detect poor-quality calibration images (outliers).
+- **Practical significance:** Low reprojection error ensures accurate undistortion, rectification, and reliable 3D reconstruction or measurement.
+- **Optimization target:** During calibration, reprojection error is minimized by adjusting intrinsic and extrinsic parameters to best align predicted projections with actual image points.
+
 ***
 
 ## References
